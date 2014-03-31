@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include "encargadocomunicacionserial.h"
+#include "control_Leap.h"
 namespace Ui {
 class MainWindow;
 }
@@ -16,6 +17,9 @@ public:
     ~MainWindow();
     
 private:
+    control_leap* control;
+    Controller controller;
+
     Ui::MainWindow *ui;
 };
 

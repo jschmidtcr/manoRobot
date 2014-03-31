@@ -17,13 +17,15 @@ LIBS += lib/x64/libLeap.so -Llib/x64
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    emisordededos.cpp \
     control_Leap.cpp \
-    comunicacion.cpp
+    encargadoComunicacion.cpp \
+    encargadocomunicacionserial.cpp \
+    conversorleapservo.cpp
 
 HEADERS  += mainwindow.h \
-    emisordededos.h \
     control_Leap.h \
-    comunicacion.h
+    encargadoComunicacion.h \
+    encargadocomunicacionserial.h \
+    conversorleapservo.h
 
 FORMS    += mainwindow.ui

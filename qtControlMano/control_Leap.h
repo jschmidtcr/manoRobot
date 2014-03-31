@@ -4,13 +4,13 @@
 
 #include <iostream>
 #include "Leap.h"
-#include "emisordededos.h"
-
+#include "encargadoComunicacion.h"
+#include "conversorleapservo.h"
 using namespace Leap;
 
 class control_leap : public Listener {
   public:
-    control_leap(emisorDeDedos* emisor);
+    control_leap(encargadoComunicacion* emisor);
     virtual void onInit(const Controller&);
     virtual void onConnect(const Controller&);
     virtual void onDisconnect(const Controller&);
@@ -20,11 +20,14 @@ class control_leap : public Listener {
     virtual void onFocusLost(const Controller&);
 
 private:
-    emisorDeDedos* emisor_;
+    encargadoComunicacion* comunicador_;
     Finger listaDedos_[5];
     int identificarDedo(Finger& finger_p);
     void actualizarArregloDedos(FingerList fingers);
     bool necesitaActualizar;
+    conversorLeapServo conversorEscala_;
+    int framesPorSaltar;
+    int framesSaltados;
 };
 
 #endif // CONTROL_LEAP_H
