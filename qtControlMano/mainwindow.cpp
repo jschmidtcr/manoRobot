@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     encargadoComunicacionSerial* a;
     a = new encargadoComunicacionSerial();
-    a->enviarMovimiento(encargadoComunicacion::INDICE,100);
+    a->enviarMovimiento(encargadoComunicacion::INDICE,1);
     control = new control_leap(a);
       // Have the sample listener receive events from the controller
 

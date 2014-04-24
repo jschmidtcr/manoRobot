@@ -9,7 +9,7 @@
 #include <QDebug>
 control_leap::control_leap(encargadoComunicacion *emisor):
     necesitaActualizar(true),
-    framesPorSaltar(90),
+    framesPorSaltar(10),
     framesSaltados(0)
 {
     comunicador_ = emisor;

@@ -17,8 +17,8 @@ encargadoComunicacionSerial::~encargadoComunicacionSerial()
 
 void encargadoComunicacionSerial::enviarMovimiento(int dedo_p, int posicion_p)
 {
-//    port->write(QString::number(dedo_p).toStdString().c_str());
-    if(dedo_p == INDICE){
-    port->write(QString::number(posicion_p).toStdString().c_str());
-qDebug() << posicion_p;}
+    port->write((QString::number(dedo_p) + "\n").toStdString().c_str());
+    port->write((QString::number(posicion_p) + "\n").toStdString().c_str());
+qDebug() << dedo_p << "  " << posicion_p;
+
 }
