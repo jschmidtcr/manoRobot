@@ -31,8 +31,10 @@ void loop()
    cualDedo = Serial.parseInt(); 
    if(cualDedo > -1 && cualDedo < 5){
      pos = Serial.parseInt();  
+     Serial.print("dedo" );
+     Serial.println(cualDedo);
      if (pos < 1) pos = 1;
-     else if(pos > 170) pos = 170;
+     else if(pos > 90) pos = 90;
     
      Serial.println(pos);
      myservo[cualDedo].write(pos);

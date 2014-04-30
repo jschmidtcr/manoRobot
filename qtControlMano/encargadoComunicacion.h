@@ -15,7 +15,9 @@ public:
     };
 
     virtual void enviarMovimiento(int dedo_p,int posicion_p) = 0;
-    
+    bool getEstado();
+protected:
+    bool estado_;
 
 
 

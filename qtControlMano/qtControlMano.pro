@@ -20,12 +20,15 @@ SOURCES += main.cpp\
     control_Leap.cpp \
     encargadoComunicacion.cpp \
     encargadocomunicacionserial.cpp \
-    conversorleapservo.cpp
+    conversorleapservo.cpp \
+    controlmanual.cpp
 
 HEADERS  += mainwindow.h \
     control_Leap.h \
     encargadoComunicacion.h \
     encargadocomunicacionserial.h \
-    conversorleapservo.h
+    conversorleapservo.h \
+    controlmanual.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    controlmanual.ui

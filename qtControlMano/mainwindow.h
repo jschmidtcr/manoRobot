@@ -16,9 +16,16 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
+private slots:
+    void on_rb_leap_clicked(bool checked);
+
+    void on_rb_manual_clicked(bool checked);
+
 private:
-    control_leap* control;
-    Controller controller;
+    control_leap* controlLeap_;
+    Controller controller_;
+    encargadoComunicacionSerial* comunicador_;
+
 
     Ui::MainWindow *ui;
 };

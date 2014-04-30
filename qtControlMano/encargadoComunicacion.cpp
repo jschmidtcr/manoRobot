@@ -11,3 +11,7 @@
 //    port->write("111");
 //}
 
+bool encargadoComunicacion::getEstado()
+{
+    return estado_;
+}

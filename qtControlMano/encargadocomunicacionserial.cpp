@@ -7,7 +7,10 @@ encargadoComunicacionSerial::encargadoComunicacionSerial()
 
 
     port = new QextSerialPort("ttyACM0",settings);
-    port->open(QIODevice::ReadWrite);
+
+    if(!(estado_ = port->open(QIODevice::ReadWrite)))
+        qDebug()<< "NO SE CONECTO" ;
+
 }
 
 encargadoComunicacionSerial::~encargadoComunicacionSerial()
@@ -19,6 +22,6 @@ void encargadoComunicacionSerial::enviarMovimiento(int dedo_p, int posicion_p)
 {
     port->write((QString::number(dedo_p) + "\n").toStdString().c_str());
     port->write((QString::number(posicion_p) + "\n").toStdString().c_str());
-qDebug() << dedo_p << "  " << posicion_p;
+    qDebug() << dedo_p << "  " << posicion_p;
 
 }

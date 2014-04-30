@@ -12,6 +12,7 @@ public:
     void enviarMovimiento(int dedo_p, int posicion_p);
 private:
     QextSerialPort *port;
+
 };
 
 #endif // ENCARGADOCOMUNICACIONSERIAL_H
