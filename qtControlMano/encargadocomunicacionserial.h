@@ -10,6 +10,7 @@ public:
     encargadoComunicacionSerial();
     ~encargadoComunicacionSerial();
     void enviarMovimiento(int dedo_p, int posicion_p);
+    void setPuerto(QString puerto);
 private:
     QextSerialPort *port;
 

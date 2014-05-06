@@ -1,0 +1,16 @@
+Windows:
+
+
+descargar qt http://qt-project.org/downloads#qt-creator
+ - primero desrcague qt5.1, compila con mingw. El problema esq las bibliotecas de Leap no funcionan con eso. Leo que ocupa usar el compilador de visual c++.
+ - qt5 es un poco distinto, me gustaria probar con el 4.8 que es el qusaba en linux
+
+descargar visual c++ http://www.visualstudio.com/downloads/download-visual-studio-vs#DownloadFamilies_4
+
+descargar 
+- Qt libraries 4.8.6 for Windows (VS 2010, 236 MB) y
+- Qt Creator 3.1.0 for Windows (68 MB) (Info) 
+en http://qt-project.org/downloads#qt-creator
+
+-----------------------------------------------
+windows parece no reconocer el arduino, instalar el software y drivers http://arduino.cc/en/Main/Software 

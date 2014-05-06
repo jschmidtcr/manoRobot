@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "encargadocomunicacionserial.h"
 #include "control_Leap.h"
+#include "qextserialenumerator.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -20,6 +22,8 @@ private slots:
     void on_rb_leap_clicked(bool checked);
 
     void on_rb_manual_clicked(bool checked);
+
+    void on_cb_puerto_currentIndexChanged(const QString &arg1);
 
 private:
     control_leap* controlLeap_;

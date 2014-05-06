@@ -9,11 +9,15 @@ QT       += core gui
 TARGET = qtControlMano
 TEMPLATE = app
 
-INCLUDEPATH += includeLeap
 
-include(./serial/qextserialport.pri)
+include(serial/qextserialport.pri)
 
-LIBS += lib/x64/libLeap.so -Llib/x64
+
+win32:INCLUDEPATH += win/includeLeap
+unix:INCLUDEPATH += linux/includeLeap
+
+win32:LIBS += win/lib/x86/Leapd.lib -Lwin/lib/x86
+unix:LIBS += linux/lib/x64/libLeap.so -Llinux/lib/x64
 
 SOURCES += main.cpp\
         mainwindow.cpp \

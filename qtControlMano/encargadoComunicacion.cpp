@@ -15,3 +15,4 @@ bool encargadoComunicacion::getEstado()
 {
     return estado_;
 }
+
