@@ -18,6 +18,7 @@ public:
     ~controlManual();
     
 private slots:
+    //funciones que se llaman cuando cada slider cambia su valor
     void on_vs_pulgar_valueChanged(int value);
 
     void on_vs_indice_valueChanged(int value);

@@ -14,3 +14,10 @@ en http://qt-project.org/downloads#qt-creator
 
 -----------------------------------------------
 windows parece no reconocer el arduino, instalar el software y drivers http://arduino.cc/en/Main/Software 
+
+*************************************************************************************************
+
+emotiv control http://emotiv.com/store/apps/applications/172/567
+
+para programar se ocupa el Developer, cuesta 200$ y se puede instalar 5 veces maximo
+http://emotiv.com/store/sdk/bci/upgrade-to-developer-edition-sdk/
