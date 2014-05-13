@@ -1,5 +1,7 @@
 /******************************************************************************\
-* Intefaz para establecer comunicación con el arduino.                         *
+* Mueve los dedos a partir de señales de teclas presionadas que se espera      *
+* hayan sido configuradas en el control panel del emotiv,                      *
+*                   solo sirve en Windows                                      *
 *                                                                              *
 ********************************************************************************
 *                                                                              *
@@ -25,20 +27,38 @@
 *                                                                              *
 \******************************************************************************/
 
-#include "encargadoComunicacion.h"
+#include "controlemotiv.h"
+#include "ui_controlemotiv.h"
+#include <QKeyEvent>
 
-
-void encargadoComunicacion::enviarMovimientoATodos(int posicion_p)
+controlEmotiv::controlEmotiv(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::controlEmotiv)
 {
-    enviarMovimiento(PULGAR,posicion_p);
-    enviarMovimiento(INDICE,posicion_p);
-    enviarMovimiento(MEDIO,posicion_p);
-    enviarMovimiento(ANULAR,posicion_p);
-    enviarMovimiento(MENIQUE,posicion_p);
+    ui->setupUi(this);
+    setFocusPolicy(Qt::StrongFocus);
 }
 
-bool encargadoComunicacion::getEstado()
+void controlEmotiv::setEmisor(encargadoComunicacion *emisor)
 {
-    return estado_;
+    comunicador_ = emisor;
 }
 
+controlEmotiv::~controlEmotiv()
+{
+    delete ui;
+}
+
+void controlEmotiv::keyPressEvent(QKeyEvent* keyevent)
+{
+    if (keyevent->key()==Qt::Key_A)
+    {
+        ui->l_accion->setText("abrir");
+        comunicador_->enviarMovimientoATodos(0);
+    }
+    if (keyevent->key()==Qt::Key_C)
+    {
+        ui->l_accion->setText("cerrar");
+        comunicador_->enviarMovimientoATodos(90);
+    }
+}

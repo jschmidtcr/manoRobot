@@ -31,6 +31,9 @@
 
 #include <QMessageBox>
 #include <QDebug>
+
+#include <QKeyEvent>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -50,6 +53,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->controlManual_->setEmisor(comunicador_);
 
 
+//el emotiv funciona solo en WINDOWS, esta lina borra el tab en linux
+#ifndef USA_EMOTIV
+    ui->tb_opciones->removeTab(2);
+#else
+    ui->w_controlEmotiv->setEmisor(comunicador_);
+#endif
 
 }
 
@@ -60,23 +69,44 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::on_rb_leap_clicked(bool checked)
+void MainWindow::configurarLeap()
 {
-    ui->controlManual_->setEnabled(!checked);
     controller_.addListener(*controlLeap_);
-
 }
 
-void MainWindow::on_rb_manual_clicked(bool checked)
+void MainWindow::configurarManual()
 {
-    ui->controlManual_->setEnabled(checked);
     controller_.removeListener(*controlLeap_);
-
 }
+
+void MainWindow::configurarEmotiv()
+{
+    controller_.removeListener(*controlLeap_);
+    ui->w_controlEmotiv->setFocus();
+}
+
 
 void MainWindow::on_cb_puerto_currentIndexChanged(const QString &arg1)
 {
     qDebug() << "puerto cambiado " << arg1;
     if(comunicador_ != 0)
         comunicador_->setPuerto(ui->cb_puerto->currentText());
+}
+
+
+void MainWindow::on_tb_opciones_currentChanged(int index)
+{
+    switch(index)
+    {
+        case 0: qDebug() << "manual";
+                configurarManual();
+                break;
+        case 1: qDebug() << "leap";
+                configurarLeap();
+                break;
+        case 2: qDebug() << "emotiv";
+                configurarEmotiv();
+                break;
+    }
+
 }

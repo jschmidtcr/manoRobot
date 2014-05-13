@@ -9,8 +9,8 @@ QT       += core gui
 TARGET = qtControlMano
 TEMPLATE = app
 
-
 include(serial/qextserialport.pri)
+win32:DEFINES += USA_EMOTIV
 
 
 win32:INCLUDEPATH += win/includeLeap
@@ -25,14 +25,17 @@ SOURCES += main.cpp\
     encargadoComunicacion.cpp \
     encargadocomunicacionserial.cpp \
     conversorleapservo.cpp \
-    controlmanual.cpp
+    controlmanual.cpp \
+    controlemotiv.cpp
 
 HEADERS  += mainwindow.h \
     control_Leap.h \
     encargadoComunicacion.h \
     encargadocomunicacionserial.h \
     conversorleapservo.h \
-    controlmanual.h
+    controlmanual.h \
+    controlemotiv.h
 
 FORMS    += mainwindow.ui \
-    controlmanual.ui
+    controlmanual.ui \
+    controlemotiv.ui
