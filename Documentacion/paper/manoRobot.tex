@@ -106,19 +106,22 @@ se van a sentar las bases para definir un proyecto de investigación que permita
 desarrollar una mano robótica de bajo costo, con diferentes capacidades de
 movimiento. Se pretende que la mano sea controlada por medio de sensores de
 movimiento. Las posibilidades de utilización de una mano robótica son amplias en
-diversos
-campos.
+campos como: manipulación de sustancias peligrosas, sustitución de un miembro
+amputado, asistir a personas con algún problema en su motora en tareas del día
+a día, entre otras.
 
 
 \section{Marco teórico}
 
-El proyecto se centra en la utilización de \emph{Leap Motion} y \emph{Emotiv}
+El proyecto se centra en la utilización de un sensor que permite el seguimiento
+de una mano y sus dedos (\emph{Leap Motion}, detallado en la la subsección
+\ref{subsec:leap}) y un dispositivo que se coloca en la cabeza y permite captar
+y transmitir señales neuronales (\emph{Emotiv}, detallado en la subsección
+\ref{subsec:emotiv})
 para crear los controles necesarios para manipular una mano robótica. La opción
 de la mano no se impone como entrada del proyecto, si no que se debe elegir una
 como primer tarea. En la subsección \ref{subsec:decisiones} se resumen las
-consideraciones tomadas en este elección. A continuación, en las subsecciones
-\ref{subsec:leap} y \ref{subsec:emotiv}, se explican los dos tipos de sensores
-y sus características.\\
+consideraciones tomadas en esta elección.
 
 
 \subsection{Leap Motion}
@@ -128,7 +131,7 @@ y sus características.\\
          \caption{Leap Motion}
          \label{fig:leap}
       \end{figure}
-En la documentación del Leap Motion \cite{_api_????} (ver figura
+En la documentación del Leap Motion  (ver figura
 \ref{fig:leap}), se indica que: ``El sistema de Leap Motion detecta y rastrea
 las manos, los dedos y las herramientas en forma de dedos. El dispositivo opera
 en una proximidad íntima con alta precisión y de seguimiento velocidad de
@@ -137,8 +140,8 @@ campo de visión del dispositivo. Reconoce las manos, los dedos y las
 herramientas, y presenta información de posiciones, gestos y movimiento. El
 campo de visión del Leap Motion es una pirámide invertida centrada en el
 dispositivo. El alcance efectivo se extiende desde aproximadamente 25 a 600
-milímetros por encima del dispositivo.'' Es importante agregar que este
-dispositivo tenía un costo de 99\$ cuando se realizó la compra.
+milímetros por encima del dispositivo.'' Es importante agregar que este es
+un dispositivo de bajo costo, cercano a los 100\$.
 
 Se cuenta con acceso libre a las bibliotecas (pre-compiladas) para Linux, Mac y
 Windows, para lenguajes como Python, C++ y Java. Estas identifican varios
@@ -158,7 +161,7 @@ presionar un botón en el ratón)\\
          \caption{Emotiv}
          \label{fig:emotiv}
       \end{figure}
-En la documentación del Emotiv \cite{_epoc_????} (ver figura \ref{fig:emotiv}),
+En la documentación del Emotiv (ver figura \ref{fig:emotiv}),
 se indica que: ``Sobre la base de los últimos avances en tecnología neuronal,
 Emotiv presenta una interfaz personal revolucionaria para la interacción 
 persona-ordenador. Emotiv EPOC es un dispositivo de captura de señales
@@ -270,8 +273,13 @@ abstraen los protocolos de comunicación, se implementa el protocolo UART
 (serial) pero se deja una interfaz lista para agregar otros. Luego se programa
 en Arduino un receptor de UART y se asignan cinco pines encargados de PWM para
 controlar los motores responsables del movimiento de cada dedo. A continuación
-se detallan los módulos, el programa en Arduino y la capa de comunicación.\\
-
+se detallan los módulos, el programa en Arduino y la capa de comunicación. La
+figura \ref{fig:arquitectura} resume esta arquitectura.\\
+      \begin{figure}[ht]
+         \includegraphics[width=0.5\textwidth]{Arquitectura}
+         \caption{Arquitectura}
+         \label{fig:arquitectura}
+      \end{figure}
 \subsubsection{Control manual}
 Aun cuando este control no es parte de los alcances del proyecto se decide
 incluir un módulo que pueda realizar fácilmente llamadas a las funciones de
@@ -345,17 +353,29 @@ función responsable de escuchar el puerto serie por donde se indica las
 acciones a tomar. La biblioteca \emph{Servo.h} tiene dos funciones principales:
 \emph{attach} y \emph{write}. La primera se encarga de configurar un pin del
 arduino para que funcione en modo PWM y la segunda escribe valores que van a
-ser interpretados en PWM.\\
+ser interpretados en PWM. Luego se realizan las conexiones de acuerdo con la
+figura \ref{fig:arduino}\\
+      \begin{figure}[ht]
+         \includegraphics[width=0.5\textwidth]{arduino}
+         \caption{Conexiones del arduino}
+         \label{fig:arduino}
+      \end{figure}
 
 \section{Resultados obtenidos}
 Se obtuvo la colaboración de la escuela de Ingeniería en Diseño Industrial para
 la impresión de la mano. En esta escuela disponen de una impresora \emph{Cube}
 \cite{_cubify_????}, que a pesar de no ser alta calidad es suficiente para
-obtener un acabado resistente. Se completa colocando hilos de nylon como
+obtener un acabado resistente (ver figura \ref{fig:mano}). Se completa colocando
+hilos de nylon como
 tendones, conectados según las especificaciones de Langevin
 \cite{langevin_inmoov_????}. Los servos se conectan al Arduino en los pines PWM
 disponibles para este fin y se alimentan externamente con una fuente de 6V y 2A.
 
+      \begin{figure}[ht]
+         \includegraphics[width=0.35\textwidth]{mano}
+         \caption{Acabado final de la mano}
+         \label{fig:mano}
+      \end{figure}
 Para este proyecto el controlador con Emotiv se programo indirectamente
 haciendo uso del \emph{Control Panel}, esto debido a que el CIC no logró hacer
 la compra a tiempo del SDK. Esto provoca que se presenten dos versiones del
@@ -385,6 +405,8 @@ alcances de este. A continuación se enlistan algunas posibilidades:
  \item Estudiar la fuerza que la mano puede aplicar y mecanismos para
 mejorarla. Esto es cuanto torque soportan los motores y cuanta tensión el
 material utilizado para los tendones de los dedos.
+\item Probar otros materiales para los tendones, hacer estudios de resistencia
+y deformación (esto es que no se estire).
 \item Establecer un mecanismo de retroalimentación para controlar la presión
 necesaria para levantar o mover distintos objetos con la mano robótica.
 \item Cerca del final de este proyecto los fabricantes del Leap Motion
